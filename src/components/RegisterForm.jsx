@@ -65,8 +65,8 @@ const RegisterForm = ({ onSwitchToLogin }) => {
       if (response.ok) {
         // Mostrar alerta de confirmación
         alert(`¡Usuario registrado exitosamente! 
-Bienvenido ${data.usuario.nombre}. 
-Ahora puedes iniciar sesión con tu email: ${data.usuario.email}`)
+Bienvenido ${data.user.nombre}. 
+Ahora puedes iniciar sesión con tu email: ${data.user.email}`)
         
         // Limpiar el formulario
         setFormData({

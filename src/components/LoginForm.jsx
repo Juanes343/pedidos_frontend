@@ -40,7 +40,7 @@ const LoginForm = ({ onLogin, onSwitchToRegister }) => {
       const data = await response.json()
 
       if (response.ok) {
-        onLogin(data.usuario)
+        onLogin(data.user)
       } else {
         setError(data.mensaje || 'Error en el login')
       }
