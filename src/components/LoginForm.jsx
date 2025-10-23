@@ -29,7 +29,7 @@ const LoginForm = ({ onLogin, onSwitchToRegister }) => {
     }
 
     try {
-      const response = await fetch('https://backend-login-web.vercel.app/api/login', {
+      const response = await fetch('https://pedidos-backend-opal.vercel.app/api/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

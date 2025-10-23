@@ -48,7 +48,7 @@ const RegisterForm = ({ onSwitchToLogin }) => {
     }
 
     try {
-      const response = await fetch('https://backend-login-web.vercel.app/api/registro', {
+      const response = await fetch('https://pedidos-backend-opal.vercel.app/api/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
