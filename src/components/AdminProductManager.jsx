@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react'
-import ProductForm from './ProductForm'
-import '../styles/AdminProductManager.css'
+import React, { useState, useEffect } from 'react';
+import '../styles/AdminProductManager.css';
+import ProductForm from './ProductForm';
 
 const AdminProductManager = () => {
   const [products, setProducts] = useState([])
@@ -233,9 +233,13 @@ const AdminProductManager = () => {
               <tr key={product._id} className={!product.activo ? 'inactive' : ''}>
                 <td>
                   <img 
-                    src={product.imagen || '/placeholder-product.jpg'} 
+                    src={product.imagen || 'https://via.placeholder.com/50x50/667eea/ffffff?text=IMG'} 
                     alt={product.nombre}
                     className="product-image"
+                    loading="lazy"
+                    onError={(e) => {
+                      e.target.src = 'https://via.placeholder.com/50x50/667eea/ffffff?text=IMG'
+                    }}
                   />
                 </td>
                 <td>

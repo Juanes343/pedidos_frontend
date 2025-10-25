@@ -115,6 +115,14 @@
   object-fit: cover;
   border-radius: 8px;
   border: 2px solid rgba(102, 126, 234, 0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.product-image:hover {
+  transform: scale(1.1);
+  border-color: rgba(102, 126, 234, 0.3);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
 }
 
 .product-name {
