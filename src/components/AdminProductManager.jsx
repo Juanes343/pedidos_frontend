@@ -114,19 +114,31 @@ const AdminProductManager = () => {
     }
 
     try {
-      const response = await fetch(`/api/products/${productId}`, {
+      const response = await fetch(`https://pedidos-backend-opal.vercel.app/api/products/${productId}`, {
         method: 'DELETE'
       })
 
-      if (response.ok) {
-        fetchProducts()
-      } else {
-        const data = await response.json()
-        alert(data.message || 'Error al eliminar producto')
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`)
       }
+
+      const responseText = await response.text()
+      if (responseText) {
+        try {
+          const data = JSON.parse(responseText)
+          if (!data.success) {
+            throw new Error(data.message || 'Error al eliminar producto')
+          }
+        } catch (parseError) {
+          // Si no es JSON válido pero la respuesta fue exitosa, continuar
+          console.log('Respuesta no es JSON válido, pero eliminación exitosa')
+        }
+      }
+
+      fetchProducts()
     } catch (error) {
       console.error('Error al eliminar producto:', error)
-      alert('Error de conexión')
+      alert('Error al eliminar producto: ' + error.message)
     }
   }
 
