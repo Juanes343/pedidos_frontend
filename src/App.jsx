@@ -40,9 +40,11 @@ function App() {
 
   if (loading) {
     return (
-      <div className="container">
-        <div className="form-container">
-          <h2>Cargando...</h2>
+      <div className="auth-container">
+        <div className="container">
+          <div className="form-container">
+            <h2>Cargando...</h2>
+          </div>
         </div>
       </div>
     )
@@ -51,19 +53,23 @@ function App() {
   return (
     <>
       {currentView === 'login' && (
-        <div className="container">
-          <LoginForm 
-            onLogin={handleLogin} 
-            onSwitchToRegister={switchToRegister}
-          />
+        <div className="auth-container">
+          <div className="container">
+            <LoginForm 
+              onLogin={handleLogin} 
+              onSwitchToRegister={switchToRegister}
+            />
+          </div>
         </div>
       )}
       
       {currentView === 'register' && (
-        <div className="container">
-          <RegisterForm 
-            onSwitchToLogin={switchToLogin}
-          />
+        <div className="auth-container">
+          <div className="container">
+            <RegisterForm 
+              onSwitchToLogin={switchToLogin}
+            />
+          </div>
         </div>
       )}
       

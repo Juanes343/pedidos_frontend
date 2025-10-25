@@ -27,11 +27,18 @@ body {
 #root {
   width: 100vw;
   height: 100vh;
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+/* Clase específica para centrar solo el login y registro */
+.auth-container {
+  width: 100vw;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0;
-  padding: 0;
 }
 
 /* Elementos decorativos flotantes */
