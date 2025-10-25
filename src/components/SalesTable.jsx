@@ -45,7 +45,7 @@ const SalesTable = () => {
       if (filters.fechaHasta) queryParams.append('fechaHasta', filters.fechaHasta)
       if (filters.search) queryParams.append('search', filters.search)
       
-      const url = `/api/orders${queryParams.toString() ? `?${queryParams.toString()}` : ''}`
+      const url = `https://pedidos-backend-opal.vercel.app/api/orders${queryParams.toString() ? `?${queryParams.toString()}` : ''}`
       const response = await fetch(url)
       const data = await response.json()
       
@@ -89,7 +89,7 @@ const SalesTable = () => {
 
   const handleUpdateStatus = async (orderId, newStatus) => {
     try {
-      const response = await fetch(`/api/orders/${orderId}/status`, {
+      const response = await fetch(`https://pedidos-backend-opal.vercel.app/api/orders/${orderId}/status`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json'

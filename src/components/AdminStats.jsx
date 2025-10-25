@@ -25,11 +25,11 @@ const AdminStats = () => {
       setError(null)
       
       // Obtener productos
-      const productsResponse = await fetch('/api/products')
+      const productsResponse = await fetch('https://pedidos-backend-opal.vercel.app/api/products')
       const productsData = await productsResponse.json()
       
       // Obtener órdenes
-      const ordersResponse = await fetch('/api/orders')
+      const ordersResponse = await fetch('https://pedidos-backend-opal.vercel.app/api/orders')
       const ordersData = await ordersResponse.json()
       
       // Calcular estadísticas

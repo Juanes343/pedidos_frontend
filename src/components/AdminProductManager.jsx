@@ -31,7 +31,7 @@ const AdminProductManager = () => {
       if (filters.activo !== '') queryParams.append('activo', filters.activo)
       if (filters.search) queryParams.append('buscar', filters.search)
       
-      const url = `/api/products${queryParams.toString() ? `?${queryParams.toString()}` : ''}`
+      const url = `https://pedidos-backend-opal.vercel.app/api/products${queryParams.toString() ? `?${queryParams.toString()}` : ''}`
       const response = await fetch(url)
       const data = await response.json()
       
@@ -59,7 +59,7 @@ const AdminProductManager = () => {
 
   const fetchCategories = async () => {
     try {
-      const response = await fetch('/api/products/categories')
+      const response = await fetch('https://pedidos-backend-opal.vercel.app/api/products/categories')
       const data = await response.json()
       
       // Verificar la estructura de respuesta del backend
@@ -130,7 +130,7 @@ const AdminProductManager = () => {
 
   const handleUpdateStock = async (productId, newStock) => {
     try {
-      const response = await fetch(`/api/products/${productId}/stock`, {
+      const response = await fetch(`https://pedidos-backend-opal.vercel.app/api/products/${productId}/stock`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json'

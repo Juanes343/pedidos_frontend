@@ -73,8 +73,8 @@ const ProductForm = ({ product, onSubmit, onCancel }) => {
 
     try {
       const url = product 
-        ? `/api/products/${product._id}` 
-        : '/api/products'
+        ? `https://pedidos-backend-opal.vercel.app/api/products/${product._id}` 
+        : 'https://pedidos-backend-opal.vercel.app/api/products'
       
       const method = product ? 'PUT' : 'POST'
 
