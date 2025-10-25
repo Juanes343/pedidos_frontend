@@ -33,7 +33,17 @@ const AdminProductManager = () => {
       
       const url = `https://pedidos-backend-opal.vercel.app/api/products${queryParams.toString() ? `?${queryParams.toString()}` : ''}`
       const response = await fetch(url)
-      const data = await response.json()
+      
+      if (!response.ok) {
+        throw new Error(`Error al obtener productos: ${response.status}`)
+      }
+      
+      const responseText = await response.text()
+      if (!responseText) {
+        throw new Error('Respuesta vacía del servidor')
+      }
+      
+      const data = JSON.parse(responseText)
       
       console.log('Respuesta del servidor:', data) // Para debug
       
@@ -60,7 +70,17 @@ const AdminProductManager = () => {
   const fetchCategories = async () => {
     try {
       const response = await fetch('https://pedidos-backend-opal.vercel.app/api/products/categories')
-      const data = await response.json()
+      
+      if (!response.ok) {
+        throw new Error(`Error al obtener categorías: ${response.status}`)
+      }
+      
+      const responseText = await response.text()
+      if (!responseText) {
+        throw new Error('Respuesta vacía del servidor para categorías')
+      }
+      
+      const data = JSON.parse(responseText)
       
       // Verificar la estructura de respuesta del backend
       let categorias = []

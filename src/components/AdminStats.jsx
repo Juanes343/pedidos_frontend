@@ -26,11 +26,31 @@ const AdminStats = () => {
       
       // Obtener productos
       const productsResponse = await fetch('https://pedidos-backend-opal.vercel.app/api/products')
-      const productsData = await productsResponse.json()
+      
+      if (!productsResponse.ok) {
+        throw new Error(`Error al obtener productos: ${productsResponse.status}`)
+      }
+      
+      const productsText = await productsResponse.text()
+      if (!productsText) {
+        throw new Error('Respuesta vacía del servidor para productos')
+      }
+      
+      const productsData = JSON.parse(productsText)
       
       // Obtener órdenes
       const ordersResponse = await fetch('https://pedidos-backend-opal.vercel.app/api/orders')
-      const ordersData = await ordersResponse.json()
+      
+      if (!ordersResponse.ok) {
+        throw new Error(`Error al obtener órdenes: ${ordersResponse.status}`)
+      }
+      
+      const ordersText = await ordersResponse.text()
+      if (!ordersText) {
+        throw new Error('Respuesta vacía del servidor para órdenes')
+      }
+      
+      const ordersData = JSON.parse(ordersText)
       
       // Calcular estadísticas
       // Verificar la estructura de respuesta del backend

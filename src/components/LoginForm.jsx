@@ -37,7 +37,16 @@ const LoginForm = ({ onLogin, onSwitchToRegister }) => {
         body: JSON.stringify(formData)
       })
 
-      const data = await response.json()
+      if (!response.ok) {
+        throw new Error(`Error en la petición: ${response.status}`)
+      }
+
+      const responseText = await response.text()
+      if (!responseText) {
+        throw new Error('Respuesta vacía del servidor')
+      }
+
+      const data = JSON.parse(responseText)
 
       if (response.ok) {
         onLogin(data.user)

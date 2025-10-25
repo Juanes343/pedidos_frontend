@@ -47,7 +47,17 @@ const SalesTable = () => {
       
       const url = `https://pedidos-backend-opal.vercel.app/api/orders${queryParams.toString() ? `?${queryParams.toString()}` : ''}`
       const response = await fetch(url)
-      const data = await response.json()
+      
+      if (!response.ok) {
+        throw new Error(`Error al obtener órdenes: ${response.status}`)
+      }
+      
+      const responseText = await response.text()
+      if (!responseText) {
+        throw new Error('Respuesta vacía del servidor')
+      }
+      
+      const data = JSON.parse(responseText)
       
       console.log('Respuesta del servidor (orders):', data) // Para debug
       
