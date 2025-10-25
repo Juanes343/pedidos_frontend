@@ -32,14 +32,7 @@ body {
   padding: 0;
 }
 
-/* Clase específica para centrar solo el login y registro */
-.auth-container {
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+
 
 /* Elementos decorativos flotantes */
 body::before {
