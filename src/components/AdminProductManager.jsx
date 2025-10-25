@@ -132,19 +132,24 @@ const AdminProductManager = () => {
 
   const handleToggleActive = async (productId, currentStatus) => {
     try {
-      const response = await fetch(`/api/products/${productId}/toggle`, {
+      const response = await fetch(`https://pedidos-backend-opal.vercel.app/api/products/${productId}/toggle-activo`, {
         method: 'PATCH'
       })
 
-      if (response.ok) {
-        fetchProducts()
-      } else {
-        const data = await response.json()
-        alert(data.message || 'Error al cambiar estado del producto')
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`)
       }
+
+      const responseText = await response.text()
+      if (!responseText) {
+        throw new Error('Respuesta vacía del servidor')
+      }
+
+      const data = JSON.parse(responseText)
+      fetchProducts()
     } catch (error) {
       console.error('Error al cambiar estado:', error)
-      alert('Error de conexión')
+      alert('Error al cambiar estado del producto: ' + error.message)
     }
   }
 
