@@ -37,10 +37,6 @@ const LoginForm = ({ onLogin, onSwitchToRegister }) => {
         body: JSON.stringify(formData)
       })
 
-      if (!response.ok) {
-        throw new Error(`Error en la petición: ${response.status}`)
-      }
-
       const responseText = await response.text()
       if (!responseText) {
         throw new Error('Respuesta vacía del servidor')
@@ -48,12 +44,14 @@ const LoginForm = ({ onLogin, onSwitchToRegister }) => {
 
       const data = JSON.parse(responseText)
 
-      if (response.ok) {
+      if (response.ok && data.success) {
         onLogin(data.user)
       } else {
-        setError(data.mensaje || 'Error en el login')
+        // Mostrar el mensaje específico del servidor
+        setError(data.message || 'Error en el login')
       }
     } catch (error) {
+      console.error('Error en login:', error)
       setError('Error de conexión. Verifica que el servidor esté funcionando.')
     } finally {
       setLoading(false)
